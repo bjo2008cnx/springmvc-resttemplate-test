@@ -4,11 +4,11 @@
 
 <style>
     h2 {
-        font-family: 'Finger Paint', cursive;
+        font-family: '', cursive;
     }
 
     p {
-        font-family: 'Finger Paint', cursive;
+        font-family: '', cursive;
     }
 </style>
 

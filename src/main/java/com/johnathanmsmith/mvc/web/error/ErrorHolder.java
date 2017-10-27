@@ -10,29 +10,22 @@ package com.johnathanmsmith.mvc.web.error;
  * This is used to return a error to the client
  */
 
-public class ErrorHolder
-{
+public class ErrorHolder {
 
-    public ErrorHolder(String errorMessage)
-    {
+    public ErrorHolder(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
     @Override
-    public String toString()
-    {
-        return "ErrorHolder{" +
-                "errorMessage='" + errorMessage + '\'' +
-                '}';
+    public String toString() {
+        return "ErrorHolder{" + "errorMessage='" + errorMessage + '\'' + '}';
     }
 
-    public String getErrorMessage()
-    {
+    public String getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage)
-    {
+    public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

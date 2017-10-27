@@ -20,47 +20,30 @@ import org.springframework.web.bind.annotation.*;
  * <p/>
  * This is my basic controller for my web app but its going to return JSON data.
  */
-
-
 @Controller
 @RequestMapping("/api")
-class JSonController
-{
+class JSonController {
 
     private static final Logger logger = LoggerFactory.getLogger(JSonController.class);
-
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     @ResponseBody
     public User updateCustomer(@PathVariable("id") String id, @RequestBody User user) {
-
         logger.debug("I am in the controller and got ID: " + id.toString());
         logger.debug("I am in the controller and got user name: " + user.toString());
-
         return new User("NEW123", "NEW SMITH");
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     @ResponseBody
-    public User getName(@PathVariable String name, ModelMap model) throws ResourceNotFoundException
-    {
-
+    public User getName(@PathVariable String name, ModelMap model) throws ResourceNotFoundException {
         logger.debug("I am in the controller and got user name: " + name);
 
-        /*
-
-            Simulate a successful lookup for 2 users, this is where your real lookup code would go
-
-         */
-
-        if ("JohnathanMarkSmith".equals(name))
-        {
+        if ("JohnathanMarkSmith".equals(name)) {
             return new User("Johnathan Mark Smith", name);
         }
 
-        if ("Regan".equals(name))
-        {
+        if ("Regan".equals(name)) {
             return new User("Regan Smith", name);
         }
 
@@ -69,8 +52,7 @@ class JSonController
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<User> getDisplayDefault(ModelMap model)
-    {
+    public ResponseEntity<User> getDisplayDefault(ModelMap model) {
         /*
             you did not enter a name so the default is going to run
          */
@@ -80,10 +62,8 @@ class JSonController
 
     @ExceptionHandler
     @ResponseBody
-    public ResponseEntity<ErrorHolder> handle(ResourceNotFoundException e)
-    {
+    public ResponseEntity<ErrorHolder> handle(ResourceNotFoundException e) {
         logger.warn("The resource was not found", e);
         return new ResponseEntity<ErrorHolder>(new ErrorHolder("The resource was not found"), HttpStatus.NOT_FOUND);
     }
-
 }

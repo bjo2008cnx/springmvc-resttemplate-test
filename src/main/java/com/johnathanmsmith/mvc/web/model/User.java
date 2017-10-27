@@ -10,39 +10,32 @@ package com.johnathanmsmith.mvc.web.model;
  * This is the model that is going to be use for return the JSON data
  */
 
-public class User
-{
+public class User {
     private String user;
     private String name;
 
 
-    public User()
-    {
+    public User() {
     }
 
-    public User(String user, String name)
-    {
+    public User(String user, String name) {
         this.user = user;
         this.name = name;
     }
 
-    public String getUser()
-    {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(String user)
-    {
+    public void setUser(String user) {
         this.user = user;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 }

@@ -29,14 +29,12 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.johnathanmsmith.mvc.web"})
-public class WebMVCConfiguration extends WebMvcConfigurerAdapter
-{
+public class WebMVCConfiguration extends WebMvcConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(WebMVCConfiguration.class);
 
     @Bean
-    public ViewResolver resolver()
-    {
+    public ViewResolver resolver() {
         UrlBasedViewResolver url = new UrlBasedViewResolver();
         url.setPrefix("/views/");
         url.setViewClass(JstlView.class);
@@ -45,22 +43,19 @@ public class WebMVCConfiguration extends WebMvcConfigurerAdapter
     }
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry)
-    {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         logger.debug("setting up resource handlers");
         registry.addResourceHandler("/resources/").addResourceLocations("/resources/**");
     }
 
     @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
-    {
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         logger.debug("configureDefaultServletHandling");
         configurer.enable();
     }
 
     @Bean
-    public SimpleMappingExceptionResolver simpleMappingExceptionResolver()
-    {
+    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
         SimpleMappingExceptionResolver b = new SimpleMappingExceptionResolver();
 
         Properties mappings = new Properties();

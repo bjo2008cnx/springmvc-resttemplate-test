@@ -11,10 +11,8 @@ package com.johnathanmsmith.mvc.web.exception;
  */
 
 
-public class ResourceNotFoundException extends Exception
-{
-    public ResourceNotFoundException(String message)
-    {
+public class ResourceNotFoundException extends Exception {
+    public ResourceNotFoundException(String message) {
         super(message);
     }
 }

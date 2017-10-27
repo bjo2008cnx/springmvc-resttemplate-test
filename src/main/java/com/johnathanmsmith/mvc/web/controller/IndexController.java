@@ -21,44 +21,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/ask")
-class IndexController
-{
-
+class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public String getName(@PathVariable String name, ModelMap model)
-    {
-
+    public String getName(@PathVariable String name, ModelMap model) {
         logger.debug("I am in the controller and got user name: " + name);
-
-        /*
-
-            Taking the REST call param 'name' and setting it to the user
-            attribute for the output screen
-
-         */
-
         model.addAttribute("user", name);
-
         return "helloworld";
-
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getDisplayDefault(ModelMap model)
-    {
-
-        /*
-
-            you did not enter a name so the default is going to run
-
-         */
-
-
+    public String getDisplayDefault(ModelMap model) {
         model.addAttribute("user", "Johnathan Mark Smith");
         return "helloworld";
-
     }
 }

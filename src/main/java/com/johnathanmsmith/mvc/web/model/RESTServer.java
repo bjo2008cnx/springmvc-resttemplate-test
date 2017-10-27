@@ -11,32 +11,27 @@ package com.johnathanmsmith.mvc.web.model;
  * call to the REST service.
  */
 
-public class RESTServer
-{
+public class RESTServer {
     private String user;
     private String password;
     private String host;
 
 
-    public RESTServer(String user, String password, String host)
-    {
+    public RESTServer(String user, String password, String host) {
         this.user = user;
         this.password = password;
         this.host = host;
     }
 
-    public String getUser()
-    {
+    public String getUser() {
         return user;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public String getHost()
-    {
+    public String getHost() {
         return host;
     }
 }

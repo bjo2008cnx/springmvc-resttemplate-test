@@ -21,8 +21,7 @@ import java.util.Map;
 import static org.apache.log4j.Logger.getLogger;
 
 @PropertySource("classpath:application.properties")
-public class Main
-{
+public class Main {
 
     /**
      * Setting up logger
@@ -30,8 +29,7 @@ public class Main
     private static final Logger LOGGER = getLogger(Main.class);
 
 
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
         LOGGER.debug("Starting REST Client!!!!");
 
         /**
@@ -51,7 +49,6 @@ public class Main
         RESTServer mRESTServer = context.getBean(RESTServer.class);
 
 
-
         /**
          *
          * Setting up data to be sent to REST service
@@ -65,8 +62,7 @@ public class Main
          * Doing the REST call and then displaying the data/user object
          *
          */
-        try
-        {
+        try {
 
             /*
 
@@ -89,9 +85,7 @@ public class Main
 
             LOGGER.debug("User:  " + u.toString());
 
-        }
-        catch (HttpClientErrorException e)
-        {
+        } catch (HttpClientErrorException e) {
             /**
              *
              * If we get a HTTP Exception display the error message
@@ -104,9 +98,7 @@ public class Main
 
             LOGGER.error("error:  " + eh.getErrorMessage());
 
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             LOGGER.error("error:  " + e.getMessage());
 
         }
