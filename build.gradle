@@ -13,6 +13,10 @@ targetCompatibility = 1.7
 
 repositories {
     mavenLocal()
+    maven {url 'http://qc-maven.weimob.com/content/repositories/thirdparty/'}
+    maven {url 'http://qc-maven.weimob.com/content/repositories/weimob/'}
+    maven {url 'http://qc-maven.weimob.com/content/repositories/weimob-snapshots/'}
+    maven {url 'http://maven.weimob.com/content/groups/public/'}
     maven { url "http://repo.maven.apache.org/maven2" }
 }
 dependencies {
@@ -74,9 +78,16 @@ dependencies {
     compile group: 'org.activiti', name: 'activiti-spring', version: '5.15.1'
 
     compile fileTree(dir: 'lib', include: '*.jar')
+    //compile project(':weimob-utility')
+    //compile project(':weimob-interface')
 
+    compile ('com.weimob:saas-message-sms-interface:1.0.0-SNAPSHOT') {
+        exclude group: 'com.alibaba'
+        exclude group: 'com.dianping.cat', module: 'cat-client'
+        transitive = false
+    }
 
-    compile('com.weimob:saas-message-sms-interface:1.0.0-SNAPSHOT') {
+    compile ('com.weimob:saas-message-client:1.0.0-SNAPSHOT') {
         exclude group: 'com.alibaba'
         exclude group: 'com.dianping.cat', module: 'cat-client'
         transitive = false
@@ -89,5 +100,9 @@ dependencies {
     compile group: 'com.weimob.saas.foundation', name: 'wxbase-core-service-interface', version: '1.2.0-SNAPSHOT', changing: true, transitive: false
     compile group: 'com.weimob.saas.foundation', name: 'wxbase-common-lib', version: '1.2.0-SNAPSHOT', changing: true, transitive: false
     //compile 'com.weimob.saas.foundation:wxbase-core-service-client:1.2.0-SNAPSHOT'
+
+    compile "org.projectlombok:lombok:1.16.4"
+
+
 
 }
