@@ -1,3 +1,4 @@
+
 apply plugin: 'java'
 apply plugin: 'maven'
 
@@ -9,16 +10,12 @@ description = """springmvc-resttemplate-test Maven Webapp"""
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-
-
 repositories {
     mavenLocal()
-    maven {url 'http://qc-maven.weimob.com/content/repositories/thirdparty/'}
-    maven {url 'http://qc-maven.weimob.com/content/repositories/weimob/'}
-    maven {url 'http://qc-maven.weimob.com/content/repositories/weimob-snapshots/'}
-    maven {url 'http://maven.weimob.com/content/groups/public/'}
+
     maven { url "http://repo.maven.apache.org/maven2" }
 }
+
 dependencies {
     compile group: 'com.jayway.jsonpath', name: 'json-path', version: '0.8.1'
     compile group: 'org.springframework', name: 'spring-orm', version: '3.2.0.RELEASE'
@@ -36,7 +33,7 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.6.6'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.6.6'
     compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.6.6'
-    compile group: 'log4j', name: 'log4j', version: '1.2.16'
+    //compile group: 'log4j', name: 'log4j', version: '1.2.16'
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
     compile group: 'com.sun.faces', name: 'jsf-api', version: '2.1.7'
@@ -103,6 +100,11 @@ dependencies {
 
     compile "org.projectlombok:lombok:1.16.4"
 
+    compile 'org.apache.logging.log4j:log4j-core:2.4.1'
+
 
 
 }
+
+tasks.withType(Compile) { options.encoding = 'UTF-8' }
+tasks.withType(Javadoc) { options.encoding = 'UTF-8' }
