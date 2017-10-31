@@ -1,12 +1,16 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 
 <head>
-    <head>
-        <script type="text/javascript">
+    <script src="./jquery-3.2.1.min.js" ></script>
+    <script type="text/javascript">
             function saveUser() {
                 //$(document).ready(function(){
                 var saveDataAry=[];
                 var data1='{"userName":"test","address":"gz"}';
+                alert('save');
                 /*  var data2={"userName":"ququ","address":"gr"};
                  var  dataJson ;
                  alert("save user");
@@ -18,7 +22,7 @@
 
                 $.ajax({
                     type:"POST",
-                    url:"user/saveUser",
+                    url:"/user/saveUser",
                     //dataType:"json",
                     contentType:"application/json",
                     data:data1,
@@ -28,9 +32,6 @@
                 });
             };
         </script>
-
-    </head>
-
 </head>
 <style>
     h2 {
@@ -45,7 +46,7 @@
 <body>
 <h2>风控测试!</h2>
 
-<button onClick="javascript:saveUser();">创建测试</button>
+<input type="button" value="创建测试" onClick="javascript:saveUser();"></input>
 <p>This is a Example of Spring MVC REST using JavaConfig.</p>
 
 <h2>This Will Display a Web Page</h2>

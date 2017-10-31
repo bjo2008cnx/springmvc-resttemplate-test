@@ -31,8 +31,19 @@ public class RequestValueUtil {
         //判断是否是包装过的request
         if (req instanceof RepeatedlyReadRequestWrapper) {
             RepeatedlyReadRequestWrapper request = (RepeatedlyReadRequestWrapper) req;
-            jsonMap = JSONUtil.fromJson(request.getBody(), Map.class);
-            requestMap = parseQuery(request.getQueryString());
+            String body = request.getBody();
+            try {
+                jsonMap = JSONUtil.fromJson(body, Map.class);
+            } catch (Throwable e) {
+                log.error("fail to parse json:" + body, e);
+                return body;
+            }
+            try {
+                requestMap = parseQuery(request.getQueryString());
+            } catch (Throwable e) {
+                log.error("fail to parse query string:" + request.getQueryString(), e);
+                return request.getQueryString();
+            }
         } else {
             HttpServletRequest request = (req instanceof HttpServletRequest) ? (HttpServletRequest) req : null;
             if (request != null) {
@@ -41,8 +52,8 @@ public class RequestValueUtil {
             }
         }
 
-        requestMap.putAll(jsonMap);
-        String requestBody = parseValue(requestMap);
+        Map all = putAll(jsonMap, requestMap);
+        String requestBody = parseValue(all);
         if (StringUtil.isEmpty(requestBody)) {
             return null;
         }
@@ -66,14 +77,13 @@ public class RequestValueUtil {
         StringBuilder builder = new StringBuilder();
         while (names.hasNext()) {
             String key = names.next().toString();
+            //处理特殊规则
             if (filterIdAndToken(key)) {
                 continue;
             }
             Object value = map.get(key);
-            builder.append(StringUtil.quote(value.toString()));
-            if (names.hasNext()) {
-                builder.append(",");
-            }
+            Object joinedValue = (value instanceof String[]) ? StringUtil.join(',', (String[]) value) : value;
+            builder.append(joinedValue).append(",");
         }
         return builder.toString();
     }
@@ -141,5 +151,15 @@ public class RequestValueUtil {
         String[] starts = {"id", "token", "lat", "lng", "mapLocation"};
         String[] ends = {"id", "token", "no", "num", "number"};
         return StringUtil.startWith(element, starts) || StringUtil.endWith(element, ends);
+    }
+
+    private static Map putAll(Map... maps) {
+        Map m = new HashMap();
+        for (Map map : maps) {
+            if (map != null) {
+                m.putAll(map);
+            }
+        }
+        return m;
     }
 }
